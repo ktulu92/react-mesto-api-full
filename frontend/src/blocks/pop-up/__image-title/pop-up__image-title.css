@@ -1,0 +1,23 @@
+.pop-up__image-title{
+    position: absolute;
+    width: 291px;
+    height: 12px;
+    left: 0px;
+    bottom: -30px; 
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;   
+    color: #FFFFFF;
+  }
+/*    
+  @media (min-width:320px) and (max-width:600px){
+    .pop-up__image-title{
+      position: absolute;
+      width: 240px;
+     
+      left: 13%;
+      top: 68%;
+  }}
+       */

@@ -1,0 +1,27 @@
+@import url(./__image/element__image.css);
+@import url(./__info/element__info.css);
+@import url(./__like-button/element__like-button.css);
+@import url(./__title/element__title.css);
+@import url(./__delete-button/element__delete-button.css);
+@import url(./__like-container/element__like-container.css);
+@import url(./__like-count/element__like-count.css);
+
+
+
+.element {
+  position: relative;
+  margin-left: 0;
+  margin-right: 0;
+  width: 282px;
+  height: 361px;
+  border-radius: 10px 10px 10px 10px;
+  background-color: #ffffff;
+  list-style-type: none;
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .element {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

@@ -1,0 +1,18 @@
+.pop-up_type_image{
+    display: flex;
+    top:0;
+    left:0;
+    height: 100%;
+    width:100%;
+    position: fixed;
+    background:rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center; 
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+  }
+
+
+ 
+

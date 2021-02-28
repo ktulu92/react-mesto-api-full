@@ -1,0 +1,19 @@
+@import url(../register/__form-title/register__form-title.css);
+@import url(../register/__form/register__form.css);
+@import url(../register/__signin/register__signin.css);
+@import url(../register/__link/register__link.css);
+@import url(../register/__input/register__input.css);
+@import url(../register/__login-link/register__login-link.css);
+@import url(../register/__login-question/register__login-question.css);
+@import url(../register/__login/register__login.css);
+
+.register {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    justify-content: space-between;
+    width: 358px;
+    height: 440px;
+    margin: 60px auto 80px auto;
+    padding-top: 0;
+}

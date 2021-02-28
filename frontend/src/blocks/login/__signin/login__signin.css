@@ -1,0 +1,7 @@
+.login__signin {
+  display: flex;
+  margin-top: -39px;
+  /* justify-content: space-between; */
+  margin: 0 auto;
+  height: 17px;
+}

@@ -1,0 +1,24 @@
+.pop-up__image-close-button{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    border: none;
+    object-position: center;
+    object-fit: none;
+    top: -50px;
+    left: 99%;
+    background: url(../../../images/close-icon.svg);
+    
+    
+  }
+
+  .pop-up__image-close-button:hover{
+opacity: 0.6;
+  }
+  
+  
+  @media (min-width:320px) and (max-width:600px){
+    .pop-up__image-close-button{
+      top: -50px;
+      left: 95%;
+  }}

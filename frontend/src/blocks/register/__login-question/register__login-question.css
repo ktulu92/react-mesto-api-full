@@ -1,0 +1,9 @@
+.register__login-question{
+    margin: 0;
+    max-width: 318px;
+    font-size: 14px;
+    color: #ffffff;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

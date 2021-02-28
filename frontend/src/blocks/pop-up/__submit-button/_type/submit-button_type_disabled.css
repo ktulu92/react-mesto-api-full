@@ -1,0 +1,5 @@
+.pop-up__submit-button_type_disabled{
+    background: #E5E5E5;
+    pointer-events: none;
+    user-select: none;
+}

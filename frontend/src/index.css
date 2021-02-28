@@ -1,0 +1,55 @@
+
+@import url(./vendor/normalize.css);
+/* @import url(./fonts/fonts.css); */
+@import url(./blocks/page/page.css);
+@import url(./blocks/header/header.css);
+@import url(./blocks/register/register.css);
+@import url(./blocks/login/login.css);
+@import url(./blocks/content/content.css);
+@import url(./blocks/profile/profile.css);
+@import url(./blocks/elements/elements.css);
+@import url(./blocks/element/element.css);
+@import url(./blocks/footer/footer.css);
+@import url(./blocks/pop-up/pop-up.css);
+@import url(./blocks/info-tool-tip/info-tool-tip.css);
+@import url(./blocks/pop-up/_opened/pop-up_opened.css);
+
+
+
+
+body {
+  background-color: #000;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

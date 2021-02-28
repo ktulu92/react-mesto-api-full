@@ -1,0 +1,17 @@
+.header__logo{
+    background-image: url(../../../images/vector.png);
+    margin-top:45px ;
+    min-width:142px;
+    min-height:33px;
+    margin-bottom: 40px;
+    background-repeat: no-repeat;
+  }
+  
+  
+  @media screen and (min-width:320px) and (max-width:600px){
+    .header__logo{
+      margin-bottom: 31x;
+      margin-top:28px ;
+      margin-left: 27px;
+  }
+  }

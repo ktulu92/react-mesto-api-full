@@ -1,0 +1,22 @@
+.pop-up_container_type_image{
+    display: flex;
+    /* top: 0; */
+    /* left: 0; */
+    max-height: 75vh;
+    max-width: 75vw;
+    position: fixed;
+    background: wheat;
+    align-items: center;
+    justify-content: center;}
+
+
+
+
+    
+  @media (min-width:320px) and (max-width:600px){
+      .pop-up_container_type_image{
+        min-width: 240px;
+        max-height: 300px;
+      
+    }
+  }
