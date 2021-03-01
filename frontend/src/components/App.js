@@ -224,10 +224,10 @@ function App() {
           onOut={handleLogout}
         />
         <Switch>
-          <Route path="/signin">
+          <Route path="/signup">
             <Register onRegister={handleRegister} />
           </Route>
-          <Route path="/signup">
+          <Route path="/signin">
             <Login onLogin={handleLogin} />
           </Route>
 

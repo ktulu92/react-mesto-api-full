@@ -12,7 +12,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useFindAndModify: false,
 });
 
-const PORT = 3002;
+const PORT = 3004;
 const app = express();
 app.use(require('cors')());
 
