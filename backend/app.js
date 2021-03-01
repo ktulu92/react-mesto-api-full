@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-// const { errors, celebrate, Joi } = require('celebrate');
+const { errors } = require('celebrate');
+
 const router = require('./routers');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -26,7 +27,10 @@ mongoose.connection.on('error', () => console.log('ошибка'));
 
 app.use(requestLogger);
 
-// app.use(logger);
+// ...
+
+// обработчики ошибок
+app.use(errors());
 
 app.use('/', express.static('public'));
 app.use('/', router);
