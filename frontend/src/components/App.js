@@ -23,7 +23,7 @@ import AddPlacePopup from "../components/AddPlacePopup";
 import Register from "../components/Register";
 import Login from "../components/Login";
 import InfoToolTip from "../components/InfoTooltip";
-import * as auth from "../components/auth";
+import * as auth from "../utils/auth";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);

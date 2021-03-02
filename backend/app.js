@@ -35,9 +35,7 @@ app.use(errors());
 app.use('/', express.static('public'));
 app.use('/', router);
 
-// app.use(auth); авторизировать в роутах
-// app.post('/signin', login);
-// app.post('/signup', createUser);
+
 
 app.use(errorLogger); // подключаем логгер ошибок
 
