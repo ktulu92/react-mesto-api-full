@@ -7,14 +7,14 @@ function Header(props) {
     <header className="header"> 
       <div className="header__logo"></div> 
 
-      <Route className="header__enter" path="/signup"> 
-        <Link to="/signup" className="header__out"> 
+      <Route className="header__enter" path="/login"> 
+        <Link to="/register" className="header__out"> 
           Регистрация 
         </Link> 
       </Route> 
  
-      <Route className="header__reg" path="/signin"> 
-        <Link to="/signin" className="header__out"> 
+      <Route className="header__reg" path="/register"> 
+        <Link to="/login" className="header__out"> 
           Войти 
         </Link> 
       </Route> 

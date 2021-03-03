@@ -23,7 +23,7 @@ import AddPlacePopup from "../components/AddPlacePopup";
 import Register from "../components/Register";
 import Login from "../components/Login";
 import InfoToolTip from "../components/InfoTooltip";
-import * as auth from "../utils/auth";
+import * as auth from "../components/auth";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -224,10 +224,10 @@ function App() {
           onOut={handleLogout}
         />
         <Switch>
-          <Route path="/signup">
+          <Route path="/register">
             <Register onRegister={handleRegister} />
           </Route>
-          <Route path="/signin">
+          <Route path="/login">
             <Login onLogin={handleLogin} />
           </Route>
 

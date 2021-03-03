@@ -2,6 +2,10 @@ import React,{useState} from "react";
 import { Link, useHistory, withRouter } from "react-router-dom";
 
 
+import * as auth from './auth';
+// import * as data from '../data.js';
+// import './styles/Register.css';
+
 const Login = (props)=> {
 const [email,setEmail]=useState('');
 const[password,setPassword]=useState('')
@@ -18,7 +22,17 @@ const[password,setPassword]=useState('')
    
     const handleSubmit = (e) => {
       e.preventDefault();
- 
+      props.onLogin({email,password})
+    //  debugger
+      //   
+      //   auth.authorize(data.email, data.password).then((res) => {
+      //     if(res){
+      //       history.push('/');
+      //     } else {
+      //       console.log('Произошла ошибка.');
+      //     }
+      //   });
+      // }
     }
 
     return (
