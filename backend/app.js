@@ -20,8 +20,8 @@ const app = express();
 const options = {
   origin: [
     'http://localhost:8080',
-    'https://http://ktulu92.students.nomoredomains.monster',
-    'https://http://ktulu92.students.nomoredomains.monster',
+    'http://ktulu92.students.nomoredomains.monster',
+    'https://ktulu92.students.nomoredomains.monster',
     'https://YOUR.github.io',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
