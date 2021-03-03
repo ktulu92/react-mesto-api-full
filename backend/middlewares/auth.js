@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
     next(new UnauthorizedError('Авторизируйтесь'));
   }
 
-  const token = autorization.replace('Bearer', ' ');
+  const token = autorization.replace('Bearer ', ' ');
   let payload;
 
   try {
@@ -18,5 +18,5 @@ module.exports = (req, res, next) => {
   }
 
   req.user = payload;
-  return next();
+  next();
 };
