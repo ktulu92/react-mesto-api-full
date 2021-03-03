@@ -62,7 +62,7 @@ const Register =(props)=> {
           </button>
           <div className="register__signin">
           <p className="register__login-question">Уже зарегистрированы?</p>
-          <div to="login" className="register__login-link"> 
+          <div to="signin" className="register__login-link"> 
           
             <Link to="/signin" type="button" className="register__login">Войти</Link>
           </div>
