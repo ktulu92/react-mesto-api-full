@@ -39,3 +39,5 @@ router.use('*', (req, res) => {
 });
 
 module.exports = router;
+
+// curl -X POST localhost/signin -H "Content-Type: application/json" -d '{"email":"sludgekicker666@gmail.com","password":"123123"}'
