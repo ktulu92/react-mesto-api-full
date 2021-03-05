@@ -30,7 +30,7 @@ router.post(
   login,
 );
 
-router.use(auth);
+// router.use(auth);
 router.use('/users', userRoutes); //
 router.use('/cards', cardRoutes); //
 
