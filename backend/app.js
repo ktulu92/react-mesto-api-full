@@ -51,6 +51,13 @@ app.use(requestLogger);
 app.use(errors());
 
 app.use('/', express.static('public'));
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 app.use('/', router);
 
 app.use(errorLogger); // подключаем логгер ошибок
