@@ -21,7 +21,7 @@ const options = {
   origin: [
     '*',
     'http://localhost:8080',
-    'http://ktulu92.students.nomoredomains.monster',
+    'http://ktulu92.students.nomoredomains.monster/signin',
     'https://ktulu92.students.nomoredomains.monster',
     'https://api.ktulu92.students.nomoredomains.monster',
     'http://api.ktulu92.students.nomoredomains.monster',
