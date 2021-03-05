@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-// const validator = require('validator');
+const validator = require('validator');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -34,13 +34,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    // validate: {
-    //   validator(v) {
-    //     return validator.isEmail(v);
-    //   }
-    //   ,
-    //   message: 'wrong format email',
-    // },
+    validate: {
+      validator(v) {
+        return validator.isEmail(v);
+      }
+      ,
+      message: 'wrong format email',
+    },
   },
   password: {
     type: String,
