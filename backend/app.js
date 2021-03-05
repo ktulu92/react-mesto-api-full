@@ -32,8 +32,8 @@ const options = {
   allowedHeaders: ['Content-Type', 'origin', 'Authorization', 'autorization'],
   credentials: true,
 };
-
-app.use('*', cors(options)); // ПЕРВЫМ!
+app.options('*', cors());
+app.use('*', corss()); // ПЕРВЫМ!
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
