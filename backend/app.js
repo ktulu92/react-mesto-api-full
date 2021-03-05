@@ -50,4 +50,11 @@ app.use(requestLogger);
 // обработчики ошибок
 app.use(errors());
 
-app.use('/', exapp.use('*', cors()); // ПЕРВЫМ!
+app.use('/', express.static('public'));
+app.use('/', router);
+
+app.use(errorLogger); // подключаем логгер ошибок
+
+app.listen(PORT, () => {
+  console.log(`application run on port ${PORT}`);
+});
