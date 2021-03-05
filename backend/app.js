@@ -17,23 +17,22 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 const PORT = 3000;
 const app = express();
 
-const options = {
-  origin: [
-    '*',
-    // 'http://localhost:8080',
-    // 'http://ktulu92.students.nomoredomains.monster',
-    // 'https://ktulu92.students.nomoredomains.monster',
-    // 'https://api.ktulu92.students.nomoredomains.monster',
-    // 'http://api.ktulu92.students.nomoredomains.monster',
-  ],
-  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-  allowedHeaders: ['Content-Type', 'origin', 'Authorization', 'autorization'],
-  credentials: true,
-};
-
-app.use('*', cors(options)); // ПЕРВЫМ!
+// const options = {
+//   origin: [
+//     '*',
+//     // 'http://localhost:8080',
+//     // 'http://ktulu92.students.nomoredomains.monster',
+//     // 'https://ktulu92.students.nomoredomains.monster',
+//     // 'https://api.ktulu92.students.nomoredomains.monster',
+//     // 'http://api.ktulu92.students.nomoredomains.monster',
+//   ],
+//   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+//   preflightContinue: false,
+//   optionsSuccessStatus: 204,
+//   allowedHeaders: ['Content-Type', 'origin', 'Authorization', 'autorization'],
+//   credentials: true,
+// };
+app.use('*', cors());// ПЕРВЫМ!
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
