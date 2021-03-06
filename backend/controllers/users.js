@@ -17,12 +17,12 @@ const getUsers = (req, res, next) => {
 
 const getUser = (req, res, next) => {
   // const { id } = req.params;
-  User.findById(req.params.id)
+  User.findById(req.params.userId)
     .then((user) => {
       if (!user) {
         throw new NotFoundError('Нет пользователя с таким id');
       }
-      res.status(200).send(user);
+      res.status(200).send({ data: user });
     })
     .catch(next);
 };
@@ -110,7 +110,7 @@ const getUserInfo = (req, res, next) => {
     .orFail(() => {
       throw new Error('Пользователь не найден');
     })
-    .then((user) => res.send(user))
+    .then((user) => res.send({ data: user }))
     .catch(next);
 };
 module.exports = {
