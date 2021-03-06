@@ -42,7 +42,7 @@ function App() {
 
   useEffect(() => {
     checkToken();
-  }, []);
+  }, [loggedIn]);
 
   React.useEffect(() => {
     api
