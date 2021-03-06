@@ -40,10 +40,6 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUserEmail, setCurrentUserEmail] = useState("");
 
-  useEffect(() => {
-    checkToken();
-  }, [loggedIn]);
-
   React.useEffect(() => {
     api
       .getProfileInfo()
@@ -203,6 +199,13 @@ function App() {
         console.log(`Ошибка: ${err}`);
       });
   }, []);
+
+
+
+  useEffect(() => {
+    checkToken();
+  }, [loggedIn]);
+
 
   function handleLogout() {
     localStorage.removeItem("jwt");
