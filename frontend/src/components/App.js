@@ -204,7 +204,7 @@ function App() {
 
   useEffect(() => {
     checkToken();
-  }, [loggedIn]);
+  }, []);
 
 
   function handleLogout() {
