@@ -7,7 +7,8 @@ router.get('/me', controller.getUserInfo);
 
 router.get('/:id', validateLogin, controller.getUser);
 
-router.patch('/me', validateProfile, controller.updateProfile);
+router.patch('/me', controller.updateProfile);
+//validateProfile
 router.patch('/avatar', validateAvatar, controller.updateAvatar);
 
 module.exports = router;
