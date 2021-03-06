@@ -18,24 +18,24 @@ const createCard = (req, res, next) => {
 };
 
 const deleteCard = (req, res, next) => {
+
   const { cardId } = req.params;
+  const {_id:userId} = req.user;
 
   Card.findByIdAndDelete(cardId)
-
+  .populate('owner')
     .then((card) => {
       if (!card) {
-        return res.status(404).send({ message: 'Нет карточки с таким id' });
+        throw new NotFoundError("Карточки нет")
       }
-      return res.status(200).send(card);
-    })
-    .catch((err) => {
-      if (err.name === 'CastError') {
-        res.status(400).send({ message: 'Ошибка данных' });
-      } else {
-        res.status(500).send({ message: `Ошибка сервера ${err}` });
+      else if (card.owner.toString() !===req.user._id ){
+        throw new ForbiddenError("Запрещено удалять чужую карточку!");
       }
-    });
-};
+       res.status(200).send({"Вы удалили свою карточку"});
+      }.catch (error) {
+        next(error);
+      }
+    };
 
 const likeCard = (req, res) => {
   const { cardId } = req.params;
@@ -47,13 +47,13 @@ const likeCard = (req, res) => {
   )
     .then((card) => {
       if (!card) {
-        return res.status(404).send({ message: 'Нет карточки с таким id' });
+        throw new NotFoundError("Карточки нет")
       }
       return res.status(200).send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        res.status(400).send({ message: 'Ошибка данных' });
+        throw new  BadRequestError("Карточки нет")
       } else {
         res.status(500).send({ message: `Ошибка сервера ${err}` });
       }
@@ -69,13 +69,13 @@ const dislikeCard = (req, res) => {
   )
     .then((card) => {
       if (!card) {
-        return res.status(404).send({ message: 'Нет карточки с таким id' });
+        throw new NotFoundError("Карточки нет")
       }
       return res.status(200).send(card);
     })
     .catch((err) => {
-      if (err.name === 'CastError') {
-        res.status(400).send({ message: 'Ошибка данных' });
+      if (err.name === 'ForbiddenError') {
+        throw new ForbiddenError("Запрещено лайкать чужую карточку!");
       } else {
         res.status(500).send({ message: `Ошибка сервера ${err}` });
       }

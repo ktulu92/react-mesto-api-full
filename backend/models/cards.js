@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const {ObjectId} = require
+
 
 const CardSchema = new mongoose.Schema({
   name: {
@@ -17,14 +17,17 @@ const CardSchema = new mongoose.Schema({
         return /^(https?:\/\/)([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)/g;
       },
     },
-    message: 'wrong url',
+    message: 'Невалидная ссылка',
   },
 
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
-  likes: [{ type: mongoose.Schema.Types.ObjectId, default: [] }],
+
+  likes: [{ type: mongoose.Schema.Types.ObjectId, default: []
+   }],
+
   createdAt: {
     type: Date,
     default: Date.now,
