@@ -78,7 +78,7 @@ function App() {
           setCurrentUserEmail(email);
 
           setLoggedIn(true);
-          history.push("/");
+          // history.push("/");
         })
         .catch((err) => {
           console.log(`Ошибка: ${err}`);
