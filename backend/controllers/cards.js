@@ -1,7 +1,9 @@
 const Card = require('../models/cards');
-// const NotFoundError = require('../errors/NotFoundError');
-// const ForbiddenError = require('../errors/ForbiddenError');
+
 const ServerError = require('../errors/ServerError');
+const ForbiddenError = require('../errors/ForbiddenError');
+const NotFoundError = require('../errors/NotFoundError');
+const BadRequestError = require('../errors/BadRequestError');
 
 const getCards = (req, res, next) => {
   Card.find({})
@@ -18,24 +20,22 @@ const createCard = (req, res, next) => {
 };
 
 const deleteCard = (req, res, next) => {
-
   const { cardId } = req.params;
-  const {_id:userId} = req.user;
 
   Card.findByIdAndDelete(cardId)
-  .populate('owner')
+    .orFail(() => {
+      throw new NotFoundError('Такой карточки нет');
+    })
+
     .then((card) => {
-      if (!card) {
-        throw new NotFoundError("Карточки нет")
+      if (card.owner.toString() === req.user._id) {
+        card.remove().then((cardToDelete) => res.status(200).send({ data: cardToDelete }));
+      } else {
+        throw new ForbiddenError('Удалять можно только свои карточки');
       }
-      else if (card.owner.toString() !===req.user._id ){
-        throw new ForbiddenError("Запрещено удалять чужую карточку!");
-      }
-       res.status(200).send({"Вы удалили свою карточку"});
-      }.catch (error) {
-        next(error);
-      }
-    };
+    })
+    .catch(next);
+};
 
 const likeCard = (req, res) => {
   const { cardId } = req.params;
@@ -47,15 +47,15 @@ const likeCard = (req, res) => {
   )
     .then((card) => {
       if (!card) {
-        throw new NotFoundError("Карточки нет")
+        throw new NotFoundError('Карточки нет');
       }
       return res.status(200).send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        throw new  BadRequestError("Карточки нет")
+        throw new BadRequestError('Карточки нет');
       } else {
-        res.status(500).send({ message: `Ошибка сервера ${err}` });
+        throw new ServerError('Ошибка на сервере');
       }
     });
 };
@@ -69,15 +69,15 @@ const dislikeCard = (req, res) => {
   )
     .then((card) => {
       if (!card) {
-        throw new NotFoundError("Карточки нет")
+        throw new NotFoundError('Карточки нет');
       }
       return res.status(200).send(card);
     })
     .catch((err) => {
       if (err.name === 'ForbiddenError') {
-        throw new ForbiddenError("Запрещено лайкать чужую карточку!");
+        throw new ForbiddenError('Запрещено лайкать чужую карточку!');
       } else {
-        res.status(500).send({ message: `Ошибка сервера ${err}` });
+        throw new ServerError('Ошибка на сервере');
       }
     });
 };

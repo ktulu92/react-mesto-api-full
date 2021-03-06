@@ -1,10 +1,11 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../models/users');
-const BadRequestError = require('../errors/ BadRequestError');
+const BadRequestError = require('../errors/BadRequestError');
 const NotFoundError = require('../errors/NotFoundError');
 const ServerError = require('../errors/ServerError');
 const UnauthorizedError = require('../errors/UnauthorizedError');
+const ForbiddenError = require('../errors/ForbiddenError');
 
 const getUsers = (req, res, next) => {
   User.find({})
@@ -42,7 +43,7 @@ const createUser = (req, res, next) => {
     }))
 
     .then((user) => {
-      res.send({
+      res.status(200).res.send({
         name: user.name,
         about: user.about,
         avatar: user.avatar,
@@ -52,9 +53,9 @@ const createUser = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        res.status(400).send({ message: 'Ошибка валидации' }); // добавить типизированную оишьку
+        next(new ForbiddenError('Ошибка валидации')); // добавить типизированную оишьку
       } else {
-        res.status(500).send({ message: 'Ошибка сервера' }); // добавить типизированную оишьку
+        next(new ServerError('Ошибка на сервере'));
       }
       next(err);
     });
@@ -65,7 +66,7 @@ const updateAvatar = (req, res, next) => {
   User.findByIdAndUpdate(req.user._id, { avatar }, { new: true, runValidators: true })
     .then((user) => {
       if (!user) {
-        return res.status(404).send({ message: 'Нет пользователя с таким id' });
+        throw new NotFoundError('Нет пользователя с таким id');
       }
       return res.status(200).send(user);
     })

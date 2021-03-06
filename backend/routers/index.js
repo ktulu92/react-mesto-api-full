@@ -4,6 +4,7 @@ const auth = require('../middlewares/auth');
 const userRoutes = require('./users');
 const cardRoutes = require('./cards');
 const { login, createUser } = require('../controllers/users');
+const NotFoundError = require('../errors/NotFoundError');
 
 router.post(
   '/signup',
@@ -13,7 +14,11 @@ router.post(
       password: Joi.string().min(6).required(),
       email: Joi.string().required().email(),
       about: Joi.string().min(2).max(30),
-      avatar: Joi.string(),
+      avatar: Joi.string()
+        .required()
+        .pattern(
+          /(https?:\/\/)(w{3}\.)?(((\d{1,3}\.){3}\d{1,3})|((\w-?)+\.(ru|com)))(:\d{2,5})?((\/.+)+)?\/?#?/,
+        ),
     }),
   }),
   createUser,
@@ -30,14 +35,12 @@ router.post(
   login,
 );
 
-router.use(auth);
-router.use('/users', userRoutes); //
-router.use('/cards', cardRoutes); //
+// router.use(auth);
+router.use('/users', auth, userRoutes); //
+router.use('/cards', auth, cardRoutes); //
 
-router.use('*', (req, res) => {
-  res.status(404).send({ message: 'Запрашиваемый ресурс не найден' });
+router.use('*', (req, res, next) => {
+  next(new NotFoundError('Запрашиваемый ресурс не найден'));
 });
 
 module.exports = router;
-
-// curl -X POST localhost/signin -H "Content-Type: application/json" -d '{"email":"sludgekicker666@gmail.com","password":"123123"}'
