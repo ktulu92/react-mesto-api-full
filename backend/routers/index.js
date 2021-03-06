@@ -35,7 +35,7 @@ router.post(
   login,
 );
 
-// router.use(auth);
+router.use(auth);
 router.use('/users', auth, userRoutes); //
 router.use('/cards', auth, cardRoutes); //
 
