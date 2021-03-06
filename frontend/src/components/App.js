@@ -73,7 +73,7 @@ function App() {
         .getToken(token)
 
         .then((data) => {
-          const { email } = res.data;
+          
           setLoggedIn(true);
           setCurrentUserEmail(data.email);
          
