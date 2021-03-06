@@ -72,13 +72,12 @@ function App() {
       auth
         .getToken(token)
 
-        .then((res) => {
+        .then((data) => {
           const { email } = res.data;
-
-          setCurrentUserEmail(email);
-
           setLoggedIn(true);
-          // history.push("/");
+          setCurrentUserEmail(data.email);
+         
+          history.push("/");
         })
         .catch((err) => {
           console.log(`Ошибка: ${err}`);
@@ -91,7 +90,7 @@ function App() {
       .register(data.email, data.password)
       .then((res) => {
         debugger;
-        // localStorage.setItem("jwt", res.token);
+        localStorage.setItem("jwt", res.token);
         setIsRegisterd(true);
         setIsInfoToolTipPopupOpen(true);
         history.push("/");
