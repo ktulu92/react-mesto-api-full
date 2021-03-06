@@ -45,7 +45,14 @@ export const getToken = (token) => {
       Authorization: `Bearer ${token}`,
     },
   })
-    .then((res) => res.json())
-    .then((data) => {return data})
-    .catch(err => console.log(err))
+  .then((response) => {
+    if (response.status === 200) {
+      return response.json();
+    }
+    else if (response.status === 401) {
+      return Promise.reject(`Ошибка: ${response.status} - переданный токен некорректен`);
+    }
+  })
+  .then(data => data.data)
+
 };
