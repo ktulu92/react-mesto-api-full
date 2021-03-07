@@ -22,7 +22,7 @@ export const register = (email, password) => {
 
 // const checkResponse = (response) => {  response.ok ? response.json() : Promise.reject("Ошибка на сервере");};
 
-export const authorize = ({email, password}) => {
+export const authorize = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: {
