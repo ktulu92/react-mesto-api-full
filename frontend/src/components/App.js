@@ -85,7 +85,11 @@ function App() {
           history.push("/"); 
         }) 
         .catch((err) => { 
-          console.log(`Ошибка: ${err}`); 
+          if (err === 401) return console.log('Неправильный токен');
+          if (err === 400) return console.log('Нет токена');
+          
+          console.log(err);
+          return true;
         }); 
     } 
   } 
@@ -96,9 +100,13 @@ function App() {
       .then((res) => { 
         
         // localStorage.setItem("jwt", res.token); 
-        setIsRegisterd(true); 
-        setIsInfoToolTipPopupOpen(true); 
-        history.push("/"); 
+        if(data){
+          setIsRegisterd(true); 
+          setIsInfoToolTipPopupOpen(true); 
+          history.push("/signin"); 
+
+        }
+        
       }) 
       .catch((err) => { 
         console.log(`Ошибка: ${err}`); 
