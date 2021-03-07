@@ -12,6 +12,7 @@ export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
+      Accept: 'application/json',
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
@@ -21,23 +22,25 @@ export const register = (email, password) => {
 
 // const checkResponse = (response) => {  response.ok ? response.json() : Promise.reject("Ошибка на сервере");};
 
-export const authorize = (email, password) => {
+export const authorize = ({email, password}) => {
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: {
+      Accept: 'application/json',
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
   })
     // .then((response) => response.json())
-    // .then((token) => {
-    //   if (token) {
-    //     localStorage.setItem("jwt", data.token);
-    //     return data;
+    // 
     //   }
     // })
     // .catch(err => console.log(err))
-    .then((res) => handleResponse(res));
+    .then((res) => handleResponse(res)).
+    then((data) => {
+        if (data) {
+          localStorage.setItem("jwt", data.token);
+          return data;}})
 };
 
 export const getToken = (token) => {
