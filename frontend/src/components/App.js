@@ -95,7 +95,8 @@ function App() {
       .register(data.email, data.password) 
       .then((res) => { 
         
-          setIsRegisterd(true); 
+        // localStorage.setItem("jwt", res.token); 
+        setIsRegisterd(true); 
         setIsInfoToolTipPopupOpen(true); 
         history.push("/"); 
       }) 
