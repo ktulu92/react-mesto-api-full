@@ -39,8 +39,8 @@ export const authorize = (email, password) => {
     .then((res) => handleResponse(res)).
     then((data) => {
         if (data) {
-          localStorage.setItem("jwt", data);
-          return data;}})
+          localStorage.setItem("jwt", data.token);}
+          return data;})
 };
 
 export const getToken = (token) => {
@@ -52,7 +52,12 @@ export const getToken = (token) => {
       Authorization: `Bearer ${token}`,
     },
   })
-  .then((res) => handleResponse(res));
+  .then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  });
 
    
 };
