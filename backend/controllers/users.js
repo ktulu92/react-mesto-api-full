@@ -106,12 +106,12 @@ const updateProfile = (req, res, next) => {
 
 const getUserInfo = (req, res, next) => {
   const { _id } = req.user;
-  User.findById(_id)
-    .orFail(() => {
-      throw new Error('Пользователь не найден');
-    })
-    .then((user) => res.send({ data: user }))
-    .catch(next);
+  const user = User.findById(_id);
+  if (!user) {
+    throw new Error('Пользователь не найден');
+  }
+
+  res.status(200).send(user).catch(next);
 };
 module.exports = {
   getUsers,

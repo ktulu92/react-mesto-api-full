@@ -1,5 +1,13 @@
 export const BASE_URL = "https://api.ktulu92.students.nomoredomains.monster";
 
+
+const handleResponse = (res) => {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(res.status);
+};
+
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
@@ -8,13 +16,7 @@ export const register = (email, password) => {
     },
     body: JSON.stringify({ email, password }),
   })
-    .then((res) => {
-      return res.json();
-    })
-    .then((res) => {
-      return res;
-    })
-    .catch((err) => console.log(err));
+  .then((res) => handleResponse(res));
 };
 
 // const checkResponse = (response) => {  response.ok ? response.json() : Promise.reject("Ошибка на сервере");};
@@ -46,12 +48,7 @@ export const getToken = (token) => {
       Authorization: `Bearer ${token}`,
     },
   })
-    .then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(res.status);
-  });
+  .then((res) => handleResponse(res));
 
    
 };
