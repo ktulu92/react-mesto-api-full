@@ -41,7 +41,7 @@ const createUser = (req, res, next) => {
       email,
       password: hash,
     }))
-    .then((user) => res.send({ data: { _id: user._id, email: user.email } }))
+    .then((user) => res.status(200).send({ data: { _id: user._id, email: user.email } }))
     .catch((e) => {
       const err = new Error('Переданы некорректные данные');
       err.statusCode = 400;
