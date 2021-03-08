@@ -52,14 +52,14 @@ app.use((err, req, res, next) => {
   }
   if (err.name === 'CastError') {
     statusCode = 400;
-    message = 'Передан некорректный идентификатор';
+    message = 'Передан некорректный токен';
   }
   if (err.name === 'MongoError' && err.code === 11000) {
     statusCode = 409;
     message = 'Пользователь с таким email уже есть';
   }
   res.status(statusCode).send({
-    message: statusCode === 500 ? 'Ошика сервера' : message,
+    message: statusCode === 500 ? 'Ошибка сервера' : message,
   });
 
   next();
