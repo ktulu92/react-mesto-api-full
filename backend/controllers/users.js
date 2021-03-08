@@ -50,7 +50,7 @@ return
     }))
 
     .then((user) => {
-      res.status(200).send({
+      res.send({
         name: user.name,
         about: user.about,
         avatar: user.avatar,
