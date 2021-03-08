@@ -48,7 +48,7 @@ const createUser = (req, res, next) => {
       throw new BadRequestError(`Некорректный запрос: ${err.message}`);
     })
     .then((user) => {
-      res.status(200).res.send({
+      res.status(200).send({
         name: user.name,
         about: user.about,
         avatar: user.avatar,
