@@ -26,12 +26,12 @@ router.post(
 
 router.post(
   '/signin',
-  celebrate({
-    body: Joi.object().keys({
-      password: Joi.string().min(6).required(),
-      email: Joi.string().required().email(),
-    }),
-  }),
+  // celebrate({
+  //   body: Joi.object().keys({
+  //     password: Joi.string().min(6).required(),
+  //     email: Joi.string().required().email(),
+  //   }),
+  // }),
   login,
 );
 
