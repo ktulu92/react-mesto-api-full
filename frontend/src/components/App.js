@@ -96,11 +96,11 @@ function App() {
  
   function handleRegister(data) { 
     auth 
-      .register(data.email, data.password) 
+      .register(data) 
       .then((res) => { 
         
         // localStorage.setItem("jwt", res.token); 
-        if(data){
+        if(res !== null){
           setIsRegisterd(true); 
           setIsInfoToolTipPopupOpen(true); 
           history.push("/signin"); 

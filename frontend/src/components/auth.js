@@ -5,10 +5,10 @@ const handleResponse = (res) => {
   if (res.ok) {
     return res.json();
   }
-  return Promise.reject(res.status);
+  return Promise.reject(`Ошибка :${res.status}`);
 };
 
-export const register = (email, password) => {
+export const register = ({email, password}) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
