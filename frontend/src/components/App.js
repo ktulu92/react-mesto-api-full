@@ -100,7 +100,7 @@ function App() {
       .then((res) => { 
         
         // localStorage.setItem("jwt", res.token); 
-        if(res !== null){
+        if(res){
           setIsRegisterd(true); 
           setIsInfoToolTipPopupOpen(true); 
           history.push("/signin"); 
