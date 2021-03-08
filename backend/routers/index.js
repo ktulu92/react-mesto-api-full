@@ -39,8 +39,8 @@ router.post(
 router.use('/users', auth, userRoutes); //
 router.use('/cards', auth, cardRoutes); //
 
-router.use('*', (req, res, next) => {
-  next(new NotFoundError('Запрашиваемый ресурс не найден'));
-});
+// router.use('*', (req, res, next) => {
+//   next(new NotFoundError('Запрашиваемый ресурс не найден'));
+// });
 
 module.exports = router;
