@@ -47,17 +47,13 @@ app.use(errorLogger); // подключаем логгер ошибок
 
 
 app.use((err, req, res, next) => {
-  const { status = 500, message } = err;
-
-  res.status(status).send({
-    message: status === 500 ? 'Ошибка сервера' : message,
-  });
-  next();
+ if(err.status){
+   return res.status(err.status).send({message:err.message})
+ }
+ res.status(500).send({message:err.message})
 });
 
-router.use('*', (req, res, next) => {
-  next(new NotFoundError('Запрашиваемый ресурс не найден'));
-});
+
 app.listen(PORT, () => {
   console.log(`application run on port ${PORT}`);
 });
