@@ -37,7 +37,7 @@ User.findOne({email})
   if(user) {
     throw new ConflictError ('Email занят')
   }
-return
+
   bcrypt
   .hash(password, 10)
 })
@@ -58,14 +58,12 @@ return
         _id: user._id,
       });
     })
-    // .catch((err) => {
-    //   if (err.name === 'MongoError') {
-    //     next(new BadRequestError('Этот адрес уже используется'));
-    //   }
-      // else {
-      //   next(new ServerError('Ошибка на сервере'));
-      // }
-      .catch(next);
+    .catch((err) => {
+      if (err instanceof mongoose.Error.ValidationError) {
+        return res.status(400).send({ message: err.message });
+      }
+      return next(err);
+    });
 
 };
 
@@ -119,7 +117,8 @@ const getUserInfo = (req, res, next) => {
     throw new Error('Пользователь не найден');
   }
 
-  res.status(200).send(user).catch(next);
+  res.status(200).send(user)
+  .catch(next);
 };
 module.exports = {
   getUsers,
