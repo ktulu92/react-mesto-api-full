@@ -8,19 +8,19 @@ const NotFoundError = require('../errors/NotFoundError');
 
 router.post(
   '/signup',
-  celebrate({
-    body: Joi.object().keys({
-      name: Joi.string().min(2).max(30),
-      password: Joi.string().min(6).required(),
-      email: Joi.string().required().email(),
-      about: Joi.string().min(2).max(30),
-      avatar: Joi.string()
-        .required()
-        .pattern(
-          /(https?:\/\/)(w{3}\.)?(((\d{1,3}\.){3}\d{1,3})|((\w-?)+\.(ru|com)))(:\d{2,5})?((\/.+)+)?\/?#?/,
-        ),
-    }),
-  }),
+  // celebrate({
+  //   body: Joi.object().keys({
+  //     name: Joi.string().min(2).max(30),
+  //     password: Joi.string().min(6).required(),
+  //     email: Joi.string().required().email(),
+  //     about: Joi.string().min(2).max(30),
+  //     avatar: Joi.string()
+  //       .required()
+  //       .pattern(
+  //         /(https?:\/\/)(w{3}\.)?(((\d{1,3}\.){3}\d{1,3})|((\w-?)+\.(ru|com)))(:\d{2,5})?((\/.+)+)?\/?#?/,
+  //       ),
+  //   }),
+  // }),
   createUser,
 );
 
