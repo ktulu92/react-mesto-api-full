@@ -44,6 +44,14 @@ app.use('/', router);
 
 app.use(errorLogger); // подключаем логгер ошибок
 
+app.use((err, req, res, next) => {
+  const { status = 500, message } = err;
+  res.status(status).send({
+    message: status === 500 ? 'Ошибка на сервере' : message,
+  });
+  next();
+});
+
 app.listen(PORT, () => {
   console.log(`application run on port ${PORT}`);
 });

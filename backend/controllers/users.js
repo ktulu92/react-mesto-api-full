@@ -5,7 +5,7 @@ const BadRequestError = require('../errors/BadRequestError');
 const NotFoundError = require('../errors/NotFoundError');
 const ServerError = require('../errors/ServerError');
 const UnauthorizedError = require('../errors/UnauthorizedError');
-const ForbiddenError = require('../errors/ForbiddenError');
+// const ForbiddenError = require('../errors/ForbiddenError');
 
 const getUsers = (req, res, next) => {
   User.find({})
@@ -52,8 +52,8 @@ const createUser = (req, res, next) => {
       });
     })
     .catch((err) => {
-      if (err.name === 'ValidationError') {
-        next(new ForbiddenError('Ошибка валидации')); // добавить типизированную оишьку
+      if (err.name === 'MongoError') {
+        throw new BadRequestError('Конфликт');
       } else {
         next(new ServerError('Ошибка на сервере'));
       }
