@@ -37,7 +37,6 @@ User.findOne({email})
   if(user) {
     throw new ConflictError ('Email занят')
   }
-
   bcrypt
   .hash(password, 10)
 })
@@ -48,7 +47,6 @@ User.findOne({email})
       email,
       password: hash,
     }))
-
     .then((user) => {
       res.send({
         name: user.name,
