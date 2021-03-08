@@ -45,22 +45,24 @@ app.use('/', router);
 app.use(errorLogger); // подключаем логгер ошибок
 
 app.use((err, req, res, next) => {
-  const { statusCode = 500, message } = err;
-  // if (err.name === 'ValidationError') {
-  //   statusCode = 400;
-  //   message = 'Ошибка валидации';
-  // }
-  // if (err.name === 'CastError') {
-  //   statusCode = 400;
-  //   message = 'Передан некорректный токен';
-  // }
-  // if (err.name === 'MongoError' && err.code === 11000) {
-  //   statusCode = 409;
-  //   message = 'Пользователь с таким email уже есть';
-  // }
+  let { statusCode = 500, message } = err;
+  if (err.name === 'ValidationError') {
+    statusCode = 400;
+    message = 'Ошибка валидации';
+  }
+  if (err.name === 'CastError') {
+    statusCode = 400;
+    message = 'Передан некорректный идентификатор';
+  }
+  if (err.name === 'MongoError' && err.code === 11000) {
+    statusCode = 409;
+    message = 'Пользователь с таким email уже есть';
+  }
   res.status(statusCode).send({
-    message: statusCode === 500 ? 'Ошибка сервера' : message,
+    message: statusCode === 500 ? 'На сервере произошла ошибка' : message,
   });
+
+  next();
 });
 
 app.listen(PORT, () => {
