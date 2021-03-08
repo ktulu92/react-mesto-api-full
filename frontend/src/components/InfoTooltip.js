@@ -29,7 +29,7 @@ function InfoToolTip(props) {
           <div className="info-tool-tip__container">
             <img alt = "succes-or-fail" src={props.isRegistered ? okImage : errorImage}></img>
             <h3 className="info-tool-tip__title">{props.isRegistered ? "Вы успешно зарегистрировались" 
-            : "Что то пошло нетак! Попроубйте еще раз!"}</h3>
+            : "Что то пошло не так! Попробуйте еще раз!"}</h3>
           </div>
         </div>
       </form>
