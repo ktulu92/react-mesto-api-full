@@ -44,6 +44,8 @@ app.use('/', router);
 
 app.use(errorLogger); // подключаем логгер ошибок
 
+
+
 app.use((err, req, res, next) => {
   const { status = 500, message } = err;
 
@@ -53,6 +55,9 @@ app.use((err, req, res, next) => {
   next();
 });
 
+router.use('*', (req, res, next) => {
+  next(new NotFoundError('Запрашиваемый ресурс не найден'));
+});
 app.listen(PORT, () => {
   console.log(`application run on port ${PORT}`);
 });
