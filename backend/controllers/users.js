@@ -41,16 +41,25 @@ const createUser = (req, res, next) => {
       email,
       password: hash,
     }))
-    .then((user) => res.status(200).send({ data: { _id: user._id, email: user.email } }))
-    .catch((e) => {
-      const err = new Error('Переданы некорректные данные');
-      err.statusCode = 400;
-      if (e.name === 'MongoError' && e.code === 11000) {
-        err.message = 'Пользователь существует';
-        err.statusCode = 409;
+
+    .then((user) => {
+      res.send({
+        name: user.name,
+        about: user.about,
+        avatar: user.avatar,
+        email: user.email,
+        _id: user._id,
+      });
+    })
+    .catch((err) => {
+      if (err.name === 'ValidationError') {
+        res.status(400).send({ message: 'Ошибка валидации' }); // добавить типизированную оишьку
+      } else {
+        res.status(500).send({ message: 'Ошибка сервера' }); // добавить типизированную оишьку
       }
       next(err);
     });
+};
   // .catch((err) => {
   //   if (err.name === 'MongoError') {
   //     next(new BadRequestError('Этот адрес уже используется'));
