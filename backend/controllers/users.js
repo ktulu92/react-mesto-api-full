@@ -32,8 +32,15 @@ const createUser = (req, res, next) => {
     name, about, avatar, email, password,
   } = req.body;
 
+User.findOne({email})
+.then((user)=>{
+  if(user) {
+    throw new ConflictError ('Email занят')
+  }
+return
   bcrypt
-    .hash(password, 10)
+  .hash(password, 10)
+})
     .then((hash) => User.create({
       name,
       about,
@@ -51,15 +58,15 @@ const createUser = (req, res, next) => {
         _id: user._id,
       });
     })
-    .catch((err) => {
-      if (err.name === 'MongoError') {
-        next(new BadRequestError('Этот адрес уже используется'));
-      }
+    // .catch((err) => {
+    //   if (err.name === 'MongoError') {
+    //     next(new BadRequestError('Этот адрес уже используется'));
+    //   }
       // else {
       //   next(new ServerError('Ошибка на сервере'));
       // }
-      next(err);
-    });
+      .catch(next);
+
 };
 
 const updateAvatar = (req, res, next) => {
