@@ -41,7 +41,12 @@ const createUser = (req, res, next) => {
       email,
       password: hash,
     }))
-
+    .catch((err) => {
+      if (err.name === 'MongoError') {
+        throw new BadRequestError('Этот адрес уже используется');
+      }
+      throw new BadRequestError(`Некорректный запрос: ${err.message}`);
+    })
     .then((user) => {
       res.status(200).res.send({
         name: user.name,
@@ -51,15 +56,14 @@ const createUser = (req, res, next) => {
         _id: user._id,
       });
     })
-    .catch((err) => {
-      if (err.name === 'MongoError') {
-        next(new BadRequestError('Этот адрес уже используется'));
-      }
-      // else {
-      //   next(new ServerError('Ошибка на сервере'));
-      // }
-      next(err);
-    });
+    // .catch((err) => {
+    //   if (err.name === 'MongoError') {
+    //     next(new BadRequestError('Этот адрес уже используется'));
+    //   }
+    // else {
+    //   next(new ServerError('Ошибка на сервере'));
+    // }
+    .catch(next);
 };
 
 const updateAvatar = (req, res, next) => {
