@@ -97,7 +97,7 @@ function App() {
   function handleRegister(data) { 
     auth 
       .register(data.email, data.password) 
-      .then((res) => { 
+      .then((data) => { 
         
         // localStorage.setItem("jwt", res.token); 
         if(data){
