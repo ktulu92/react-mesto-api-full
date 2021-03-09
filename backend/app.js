@@ -47,7 +47,7 @@ app.use(errorLogger); // подключаем логгер ошибок
 
 
 app.use((err, req, res, next) => {
-  const { statusCode = 500, message } = err;
+  let { statusCode = 500, message } = err;
   if (err.name === 'BadRequestError') {
     statusCode = 400;
     message = 'Ошибка валидации';
