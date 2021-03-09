@@ -46,7 +46,28 @@ app.use('/', router);
 app.use(errorLogger); // подключаем логгер ошибок
 
 
-app.use(errorCatcher = ((err, req, res, next) => {
+
+// app.use((err, req, res, next) => {
+//   let { statusCode = 500, message } = err;
+//   if (err.name === 'BadRequestError') {
+//     statusCode = 400;
+//     message = 'Ошибка валидации';
+//   }
+//   if (err.name === 'UnauthorizedError') {
+//     statusCode = 400;
+//     message = 'Передан некорректный токен';
+//   }
+//   if (err.name === 'ConflictError' && err.code === 11000) {
+//     statusCode = 409;
+//     message = 'Пользователь с таким email уже есть';
+//   }
+//   res.status(statusCode).send({
+//     message: statusCode === 500 ? 'Ошибка сервера' : message,
+//   });
+
+//   next();
+// });
+app.use ((err, req, res, next) => {
   //  eslint-disable-next-line
   console.log({ error: err});
   if (err instanceof CelebrateError) {
@@ -57,7 +78,7 @@ app.use(errorCatcher = ((err, req, res, next) => {
   }
   res.status(500).send({ message: err.message });
   return 0;
-}));
+});
 
 app.listen(PORT, () => {
   console.log(`application run on port ${PORT}`);
