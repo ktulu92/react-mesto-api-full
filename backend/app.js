@@ -47,7 +47,7 @@ app.use(errorLogger); // подключаем логгер ошибок
 
 
 app.use((err, req, res, next) => {
- if(err.status){
+  let { statusCode = 500, message } = err;
   if (err.name === 'ValidationError') {
     statusCode = 400;
     message = 'Ошибка валидации';
@@ -60,10 +60,12 @@ app.use((err, req, res, next) => {
     statusCode = 409;
     message = 'Пользователь с таким email уже есть';
   }
-   return res.status(err.status).send({message:err.message})
- }
- res.status(500).send({message:err.message})
-});
+  res.status(statusCode).send({
+    message: statusCode === 500 ? 'Ошибка сервера' : message,
+  });
+
+  next();
+}); 
 
 
 app.listen(PORT, () => {
