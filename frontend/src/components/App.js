@@ -105,11 +105,11 @@ function App() {
        
         
       }) 
-      .catch((err) => { 
+      .catch(err => { 
 
         setIsRegisterd(false); 
         setIsInfoToolTipPopupOpen(true); 
-        console.log(`Ошибка: ${err}`); 
+        // console.log(`Ошибка: ${err}`); 
         
        
       }); 
