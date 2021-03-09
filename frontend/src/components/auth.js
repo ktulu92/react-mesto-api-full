@@ -4,9 +4,9 @@ export const BASE_URL = "https://api.ktulu92.students.nomoredomains.monster";
 
 const handleResponse = (res) => {
   if (res.ok) {
-    return res.json();
+     res.json();
   }
-  return Promise.reject("Ошибка");
+   Promise.reject("Ошибка");
 };
 
 export const register = (email, password) => {
