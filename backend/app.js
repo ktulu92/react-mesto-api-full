@@ -67,8 +67,8 @@ app.use(errorLogger); // подключаем логгер ошибок
 
 //   next();
 // });
-app.use ((err, req, res) => {
-   eslint-disable-next-line
+app.use ((err, req, res, next) => {
+  //  eslint-disable-next-line
   console.log({ error: err});
   if (err instanceof CelebrateError) {
     return res.status(400).send({ message: err.details.get('body').details[0].message });
