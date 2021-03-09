@@ -98,9 +98,6 @@ function App() {
     auth 
       .register(data.email, data.password) 
       .then((res) => { 
-        
-        // localStorage.setItem("jwt", res.token); 
-        
           setIsRegisterd(true); 
           setIsInfoToolTipPopupOpen(true); 
           history.push("/signin"); 
@@ -220,11 +217,7 @@ function App() {
     setLoggedIn(false); 
   } 
  
-  //Реаоилзация выхода, удаление токена из локал триджа 
- 
-  // Вы успешно зарегистрировались! //не забыть 
-  // Что-то пошло не так! 
-  // Попробуйте ещё раз. 
+
  
   return ( 
     <CurrentUserContext.Provider value={currentUser}> 
