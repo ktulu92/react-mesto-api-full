@@ -109,7 +109,7 @@ function App() {
 
         setIsRegisterd(false); 
         setIsInfoToolTipPopupOpen(true); 
-        // console.log(`Ошибка: ${err}`); 
+        console.log(`Ошибка: ${err}`); 
         
        
       }); 
