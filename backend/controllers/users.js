@@ -36,7 +36,7 @@ const createUser = (req, res, next) => {
   User.findOne({ email })
     .then((user) => {
       if (user) {
-        throw new ConflictError('Email уже зарегистрирован');
+        throw new ConflictError({message:'Email уже зарегистрирован'});
       }
       return bcrypt.hash(password, 10);
     })
