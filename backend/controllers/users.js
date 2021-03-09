@@ -50,7 +50,7 @@ const createUser = (req, res, next) => {
       });
     })
 
-    .next(err)
+    .catch(next)
 };
 
 const updateAvatar = (req, res, next) => {

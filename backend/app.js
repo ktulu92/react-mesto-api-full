@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 const cors = require('cors');
+const { CelebrateError } = require('celebrate');
 
 const router = require('./routers');
 
@@ -67,6 +68,18 @@ app.use(errorLogger); // подключаем логгер ошибок
 //   next();
 // });
 
+app.use(errorHandler = ((err, req, res, next) => {
+  //  eslint-disable-next-line
+  console.log({ error: err});
+  if (err instanceof CelebrateError) {
+    return res.status(400).send({ message: err.details.get('body').details[0].message });
+  }
+  if (err.status) {
+    return res.status(err.status).send({ message: err.message });
+  }
+  res.status(500).send({ message: err.message });
+  return 0;
+}));
 
 app.listen(PORT, () => {
   console.log(`application run on port ${PORT}`);
