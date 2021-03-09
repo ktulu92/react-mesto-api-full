@@ -46,26 +46,26 @@ app.use(errorLogger); // подключаем логгер ошибок
 
 
 
-app.use((err, req, res, next) => {
-  let { statusCode = 500, message } = err;
-  if (err.name === 'BadRequestError') {
-    statusCode = 400;
-    message = 'Ошибка валидации';
-  }
-  if (err.name === 'UnauthorizedError') {
-    statusCode = 400;
-    message = 'Передан некорректный токен';
-  }
-  if (err.name === 'ConflictError' && err.code === 11000) {
-    statusCode = 409;
-    message = 'Пользователь с таким email уже есть';
-  }
-  res.status(statusCode).send({
-    message: statusCode === 500 ? 'Ошибка сервера' : message,
-  });
+// app.use((err, req, res, next) => {
+//   let { statusCode = 500, message } = err;
+//   if (err.name === 'BadRequestError') {
+//     statusCode = 400;
+//     message = 'Ошибка валидации';
+//   }
+//   if (err.name === 'UnauthorizedError') {
+//     statusCode = 400;
+//     message = 'Передан некорректный токен';
+//   }
+//   if (err.name === 'ConflictError' && err.code === 11000) {
+//     statusCode = 409;
+//     message = 'Пользователь с таким email уже есть';
+//   }
+//   res.status(statusCode).send({
+//     message: statusCode === 500 ? 'Ошибка сервера' : message,
+//   });
 
-  next();
-});
+//   next();
+// });
 
 
 app.listen(PORT, () => {
