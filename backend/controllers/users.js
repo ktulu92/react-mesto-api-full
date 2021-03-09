@@ -100,7 +100,7 @@ const getUserInfo = (req, res, next) => {
   const { _id } = req.user;
   const user = User.findById(_id);
   if (!user) {
-    throw new Error('Пользователь не найден');
+    throw new NotFoundError('Пользователь не найден');
   }
   res.status(200).send(user)
   .catch(next);
