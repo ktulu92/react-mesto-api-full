@@ -100,12 +100,12 @@ function App() {
       .then((res) => { 
         
         // localStorage.setItem("jwt", res.token); 
-        if(res){
+        
           setIsRegisterd(true); 
           setIsInfoToolTipPopupOpen(true); 
           history.push("/signin"); 
 
-        }
+        
         
       }) 
       .catch((err) => { 
