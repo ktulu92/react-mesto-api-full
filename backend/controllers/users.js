@@ -5,6 +5,7 @@ const BadRequestError = require('../errors/BadRequestError');
 const NotFoundError = require('../errors/NotFoundError');
 const ServerError = require('../errors/ServerError');
 const UnauthorizedError = require('../errors/UnauthorizedError');
+const ConflictError = require('../errors/ConflictError');
 // const ForbiddenError = require('../errors/ForbiddenError');
 
 const getUsers = (req, res, next) => {
