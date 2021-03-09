@@ -24,8 +24,6 @@ export const register = (email, password) => {
 };
 
 
-
-
 export const authorize = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
@@ -35,11 +33,7 @@ export const authorize = (email, password) => {
     },
     body: JSON.stringify({ email, password }),
   })
-    // .then((response) => response.json())
-    // 
-    //   }
-    // })
-    // .catch(err => console.log(err))
+   
     .then((res) => handleResponse(res)).
     then((data) => {
         if (data != null) {
