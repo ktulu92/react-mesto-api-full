@@ -9,38 +9,38 @@ const handleResponse = (res) => {
   return Promise.reject("Ошибка");
 };
 
-// export const register = (email, password) => {
-//   return fetch(`${BASE_URL}/signup`, {
-//     method: "POST",
-//     headers: {
-//       Accept: 'application/json',
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({ email, password }),
-//   })
-//   .then((res) => handleResponse(res))
+export const register = (email, password) => {
+  return fetch(`${BASE_URL}/signup`, {
+    method: "POST",
+    headers: {
+      Accept: 'application/json',
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }),
+  })
+  .then((res) => handleResponse(res))
  
   
-// };
+};
 
 
-function checkResponse(res){
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(res);
-}
+// function checkResponse(res){
+//   if (res.ok) {
+//     return res.json();
+//   }
+//   return Promise.reject(res);
+// }
 
-export const register = (email, password) => {
-  return fetch(`${BASE_URL}/signup`,{
-    method: 'post',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({password, email})
-  })
-  .then(res => checkResponse(res))
-}
+// export const register = (email, password) => {
+//   return fetch(`${BASE_URL}/signup`,{
+//     method: 'post',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({password, email})
+//   })
+//   .then(res => checkResponse(res))
+// }
 
 
 // const checkResponse = (response) => {  response.ok ? response.json() : Promise.reject("Ошибка на сервере");};
