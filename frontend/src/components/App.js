@@ -104,14 +104,16 @@ function App() {
           setIsRegisterd(true); 
           setIsInfoToolTipPopupOpen(true); 
           history.push("/signin"); 
-
+        }
+        else {
+          setIsRegisterd(false); 
+          setIsInfoToolTipPopupOpen(true); 
         }
         
       }) 
       .catch((err) => { 
         console.log(`Ошибка: ${err}`); 
-        setIsRegisterd(false); 
-        setIsInfoToolTipPopupOpen(true); 
+       
       }); 
   } 
  
