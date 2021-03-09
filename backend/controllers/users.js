@@ -29,41 +29,66 @@ const getUser = (req, res, next) => {
 
 const createUser = (req, res, next) => {
   const {
-    name, about, avatar, email, password,
+    name, email, password, avatar, about,
   } = req.body;
 
-User.findOne({email})
-.then((user)=>{
-  if(user) {
-    throw new ConflictError ('Email занят')
-  }
-  bcrypt
-  .hash(password, 10)
-})
+  User.findOne({ email })
+    .then((user) => {
+      if (user) {
+        throw new ConflictError('Em@il уже существует');
+      }
+      return bcrypt.hash(password, 10);
+    })
     .then((hash) => User.create({
-      name,
-      about,
-      avatar,
-      email,
-      password: hash,
+      about, avatar, name, email, password: hash,
     }))
     .then((user) => {
+      const { _id } = user;
       res.send({
-        name: user.name,
-        about: user.about,
-        avatar: user.avatar,
-        email: user.email,
-        _id: user._id,
+        name, email, _id, avatar, about,
       });
     })
-    .catch((err) => {
-      if (err instanceof mongoose.Error.ValidationError) {
-        return res.status(400).send({ message: err.message });
-      }
-      return next(err);
-    });
 
+    .catch(next);
 };
+
+// const createUser = (req, res, next) => {
+//   const {
+//     name, about, avatar, email, password,
+//   } = req.body;
+
+// User.findOne({email})
+// .then((user)=>{
+//   if(user) {
+//     throw new ConflictError ('Email занят')
+//   }
+//   bcrypt
+//   .hash(password, 10)
+// })
+//     .then((hash) => User.create({
+//       name,
+//       about,
+//       avatar,
+//       email,
+//       password: hash,
+//     }))
+//     .then((user) => {
+//       res.send({
+//         name: user.name,
+//         about: user.about,
+//         avatar: user.avatar,
+//         email: user.email,
+//         _id: user._id,
+//       });
+//     })
+//     .catch((err) => {
+//       if (err instanceof mongoose.Error.ValidationError) {
+//         return res.status(400).send({ message: err.message });
+//       }
+//       return next(err);
+//     });
+
+// };
 
 const updateAvatar = (req, res, next) => {
   const { avatar } = req.body;
