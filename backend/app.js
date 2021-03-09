@@ -48,15 +48,15 @@ app.use(errorLogger); // подключаем логгер ошибок
 
 app.use((err, req, res, next) => {
   const { statusCode = 500, message } = err;
-  if (err.name === 'ValidationError') {
+  if (err.name === 'BadRequestError') {
     statusCode = 400;
     message = 'Ошибка валидации';
   }
-  if (err.name === 'CastError') {
+  if (err.name === 'UnauthorizedError') {
     statusCode = 400;
     message = 'Передан некорректный токен';
   }
-  if (err.name === 'MongoError' && err.code === 11000) {
+  if (err.name === 'ConflictError' && err.code === 11000) {
     statusCode = 409;
     message = 'Пользователь с таким email уже есть';
   }
