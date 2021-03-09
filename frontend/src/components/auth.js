@@ -18,7 +18,7 @@ export const register = (email, password) => {
     },
     body: JSON.stringify({ email, password }),
   })
-  .then((res) => handleResponse(res));
+  .then(res => handleResponse(res));
 };
 
 // const checkResponse = (response) => {  response.ok ? response.json() : Promise.reject("Ошибка на сервере");};

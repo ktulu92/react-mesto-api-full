@@ -97,22 +97,23 @@ function App() {
   function handleRegister(data) { 
     auth 
       .register(data.email, data.password) 
-      .then((data) => { 
+      .then((res) => { 
         
         // localStorage.setItem("jwt", res.token); 
-        if(data){
+        
           setIsRegisterd(true); 
           setIsInfoToolTipPopupOpen(true); 
           history.push("/signin"); 
-        }
-        else {
-          setIsRegisterd(false); 
-          setIsInfoToolTipPopupOpen(true); 
-        }
+        
+       
         
       }) 
       .catch((err) => { 
+
+        setIsRegisterd(false); 
+        setIsInfoToolTipPopupOpen(true); 
         console.log(`Ошибка: ${err}`); 
+        
        
       }); 
   } 
