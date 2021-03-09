@@ -45,6 +45,7 @@ app.use('/', router);
 app.use(errorLogger); // подключаем логгер ошибок
 
 
+
 app.use((err, req, res, next) => {
   const { statusCode = 500, message } = err;
   res.status(statusCode).send({
