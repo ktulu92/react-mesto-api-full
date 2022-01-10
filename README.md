@@ -40,11 +40,9 @@
 Ссылка на макет https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1
 
 *Запуск клиента :*
-+ npm install
-Чтобы установить зависимости
-+ npm start
-Чтобы запустить приложение по адресу: http://localhost:3000
-npm run build Чтобы получить итоговую сборку
++ npm install — Чтобы установить зависимости
++ npm start — Чтобы запустить приложение по адресу: http://localhost:3000
++ npm run build — Чтобы получить итоговую сборку
 
 *Запуск сервера: *
 + npm run start — запускает сервер
