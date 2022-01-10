@@ -46,6 +46,6 @@
 Чтобы запустить приложение по адресу: http://localhost:3000
 npm run build Чтобы получить итоговую сборку
 
-*Запуск сервера*
-npm run start — запускает сервер
-npm run dev — запускает сервер с hot-reload
+*Запуск сервера: *
++ npm run start — запускает сервер
++ npm run dev — запускает сервер с hot-reload
